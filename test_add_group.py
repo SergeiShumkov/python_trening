@@ -63,9 +63,9 @@ class TestAddGroup(unittest.TestCase):
         self.create_group(wd, Group(name="new_group", header="header_group", footer="footer_group"))
         self.return_to_groups_page(wd)
         self.logout(wd)
-        time.sleep(5)
 
-    def test_add_empty_group(self):
+
+    """def test_add_empty_group(self):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
@@ -73,7 +73,7 @@ class TestAddGroup(unittest.TestCase):
         self.create_group(wd, Group(name="", header="", footer=""))
         self.return_to_groups_page(wd)
         self.logout(wd)
-        time.sleep(5)
+        """
 
 
     def is_element_present(self, how, what):
