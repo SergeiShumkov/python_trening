@@ -4,7 +4,7 @@ import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import unittest, time
+import unittest
 
 from group import Group
 
@@ -52,6 +52,7 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("submit").click()
     def return_to_groups_page(self, wd):
         wd.find_element_by_link_text("group page").click()
+
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
@@ -64,7 +65,6 @@ class TestAddGroup(unittest.TestCase):
         self.return_to_groups_page(wd)
         self.logout(wd)
 
-
     """def test_add_empty_group(self):
         wd = self.wd
         self.open_home_page(wd)
@@ -74,7 +74,6 @@ class TestAddGroup(unittest.TestCase):
         self.return_to_groups_page(wd)
         self.logout(wd)
         """
-
 
     def is_element_present(self, how, what):
         try:
