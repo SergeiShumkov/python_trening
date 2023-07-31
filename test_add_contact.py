@@ -23,9 +23,10 @@ class UntitledTestCase(unittest.TestCase):
         self.wd = driver
         self.wd.implicitly_wait(30)
 
-    def test_add_contact(self):
-        wd = self.wd
+    def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/edit.php")
+
+    def login(self, wd):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").send_keys("admin")
@@ -33,7 +34,11 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_id("LoginForm").submit()
+
+    def create_contact(self, wd):
+        # init contact creation
         wd.find_element_by_link_text("add new").click()
+        # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys("First")
@@ -52,12 +57,25 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys("45-45-45")
+        # submit contact creation
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def return_to_home_page(self, wd):
         wd.find_element_by_link_text("home").click()
+
+    def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
+
+    def test_add_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd)
+        self.create_contact(wd)
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
+
 
     def is_element_present(self, how, what):
         try:
