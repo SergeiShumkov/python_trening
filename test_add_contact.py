@@ -14,14 +14,11 @@ DRIVER_FOLDER = os.path.expanduser("~\Downloads\drivers")
 
 options = webdriver.ChromeOptions()
 
-driver = webdriver.Chrome(executable_path=f"{DRIVER_FOLDER}\chromedriver\chromedriver.exe",
+class TestAddContact(unittest.TestCase):
+    def setUp(self):
+        self.wd = webdriver.Chrome(executable_path=f"{DRIVER_FOLDER}\chromedriver\chromedriver.exe",
                          options=options
                          )
-
-
-class UntitledTestCase(unittest.TestCase):
-    def setUp(self):
-        self.wd = driver
         self.wd.implicitly_wait(30)
 
     def open_home_page(self, wd):
@@ -73,6 +70,14 @@ class UntitledTestCase(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.create_contact(wd, Contact(firstname="First", middlename="Middle", lastname="Last", nickname="Nickname", company_name="Company", home_phone_number="45-45-45"))
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
+    def test_add_empty_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.create_contact(wd, Contact(firstname="", middlename="", lastname="", nickname="", company_name="", home_phone_number=""))
         self.return_to_home_page(wd)
         self.logout(wd)
 

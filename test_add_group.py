@@ -13,13 +13,12 @@ DRIVER_FOLDER = os.path.expanduser("~\Downloads\drivers")
 
 options = webdriver.ChromeOptions()
 
-driver = webdriver.Chrome(executable_path=f"{DRIVER_FOLDER}\chromedriver\chromedriver.exe",
-                         options=options
-                         )
 
 class TestAddGroup(unittest.TestCase):
     def setUp(self):
-        self.wd = driver
+        self.wd = webdriver.Chrome(executable_path=f"{DRIVER_FOLDER}\chromedriver\chromedriver.exe",
+                         options=options
+                         )
         self.wd.implicitly_wait(30)
     def open_home_page(self, wd):
         wd.get("http://127.0.0.1/addressbook/")
@@ -65,7 +64,7 @@ class TestAddGroup(unittest.TestCase):
         self.return_to_groups_page(wd)
         self.logout(wd)
 
-    """def test_add_empty_group(self):
+    def test_add_empty_group(self):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
@@ -73,7 +72,7 @@ class TestAddGroup(unittest.TestCase):
         self.create_group(wd, Group(name="", header="", footer=""))
         self.return_to_groups_page(wd)
         self.logout(wd)
-        """
+
 
     def is_element_present(self, how, what):
         try:
