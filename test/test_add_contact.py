@@ -3,7 +3,6 @@
 from model.contact import Contact
 
 
-
 def test_add_contact(app):
     app.session.login( username="admin", password="secret")
     app.contact.create(Contact(firstname="First", middlename="Middle", lastname="Last", nickname="Nickname", company_name="Company", home_phone_number="45-45-45"))
