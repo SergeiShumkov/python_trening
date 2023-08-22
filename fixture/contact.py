@@ -34,17 +34,6 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
-    # def edit_first_contact(self, contact):
-    #     wd = self.app.wd
-    #     self.app.open_home_page()
-    #     # edition contact
-    #     wd.find_element_by_xpath("//img[@alt='Edit']").click()
-    #     # fill contact form
-    #     self.fill_contact_form(contact)
-    #     # submit contact creation
-    #     wd.find_element_by_name("update").click()
-    #     self.return_to_home_page()
-
     def select_first_contact(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()

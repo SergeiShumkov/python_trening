@@ -49,17 +49,6 @@ class GroupHelper:
         self.return_to_groups_page()
         self.group_cache = None
 
-    # def edit_first_group(self, group):
-    #     wd = self.app.wd
-    #     self.open_groups_page()
-    #     self.select_first_group()
-    #     # edition group
-    #     wd.find_element_by_name("edit").click()
-    #     self.fill_group_form(group)
-    #     # submit group creation
-    #     wd.find_element_by_name("update").click()
-    #     self.return_to_groups_page()
-
     def modify_first_group(self, new_group_data):
         wd = self.app.wd
         self.open_groups_page()
