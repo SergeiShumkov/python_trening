@@ -20,7 +20,8 @@ class Contact:
         self.id = id
 
     def __repr__(self):
-        return f"{self.id}:{self.firstname}"
+        return f"{self.id}:{self.firstname}; {self.lastname}; {self.all_emails_from_home_page}; {self.all_phones_from_home_page}; {self.address}"
+
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) and self.firstname == other.firstname and self.lastname == other.lastname

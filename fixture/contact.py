@@ -17,11 +17,17 @@ class ContactHelper:
     def fill_contact_form(self, contact):
         wd = self.app.wd
         self.change_field_value("firstname", contact.firstname)
-        self.change_field_value("middlename", contact.middlename)
         self.change_field_value("lastname", contact.lastname)
-        self.change_field_value("nickname", contact.nickname)
-        self.change_field_value("company", contact.company_name)
-        self.change_field_value("home", contact.home_phone_number)
+        self.change_field_value("home", contact.homephone)
+        self.change_field_value("mobile", contact.mobilephone)
+        self.change_field_value("work", contact.workphone)
+        self.change_field_value("phone2", contact.secondaryphone)
+        self.change_field_value("address", contact.address)
+        self.change_field_value("email", contact.email1)
+        self.change_field_value("email2", contact.email2)
+        self.change_field_value("email3", contact.email3)
+
+
 
     def create(self, contact):
         wd = self.app.wd
