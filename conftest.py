@@ -1,5 +1,6 @@
 import json
 import pytest
+import importlib
 import os.path
 
 from fixture.application import Application
@@ -34,6 +35,15 @@ def pytest_addoption(parser):
     # parser.addoption("--baseUrl", action="store", default="http://localhost/addressbook/")
 
 
+def pytest_generate_tests(metafunc):
+    for fixture in metafunc.fixturenames:
+        if fixture.startswith("data_"):
+            testdata = load_form_module(fixture[5:])
+            metafunc.parametrize(fixture, testdata, ids=[str(x) for x in testdata])
+
+
+def load_form_module(module):
+    return importlib.import_module(f"data.{module}").testdata
 
 """@pytest.fixture
 def app():
