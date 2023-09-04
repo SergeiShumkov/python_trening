@@ -1,8 +1,8 @@
 import sys
-import jsonpickle
 import random
 import string
 import getopt
+import jsonpickle
 import os.path
 
 from model.group import Group
