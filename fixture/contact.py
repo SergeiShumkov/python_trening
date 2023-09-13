@@ -1,4 +1,5 @@
 import  re
+from selenium.webdriver.support.ui import Select
 
 from model.contact import Contact
 
@@ -84,6 +85,7 @@ class ContactHelper:
     def modify_first_contact(self):
         self.modify_contact_by_index(0)
 
+
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.app.open_home_page()
@@ -111,6 +113,27 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
+
+    def add_contact_to_group(self, contact_id, group_name):
+        wd = self.app.wd
+        self.app.open_home_page()
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("to_group").click()
+        wd.find_element_by_xpath(f"//select[@name='to_group']/option[text()='{group_name}']").click()
+        wd.find_element_by_name("add").click()
+        self.return_to_home_page()
+        self.contact_cache = None
+
+
+    def del_contact_from_group(self, contact_id, group_name):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath(f"//select[@name='group']/option[text()='{group_name}']").click()
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("remove").click()
+        self.return_to_home_page()
+        self.contact_cache = None
 
 
     def return_to_home_page(self):
